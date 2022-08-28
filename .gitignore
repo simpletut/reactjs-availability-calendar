@@ -1,5 +1,5 @@
 node_modules
-.idea
+yarn.lock
+.parcel-cache
 dist
 yarn-error.log
-yarn.lock

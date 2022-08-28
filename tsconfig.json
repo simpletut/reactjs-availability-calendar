@@ -7,7 +7,6 @@
   "compilerOptions": {
     "module": "esnext",
     "lib": ["dom", "esnext"],
-    "target": "ES3",
     "importHelpers": true,
     "declaration": true,
     "sourceMap": true,
