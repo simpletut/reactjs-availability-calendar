@@ -1,7 +1,6 @@
 # reactjs-availability-calendar
 
 [![NPM version][npm-image]][npm-url]
-[![Build][github-build]][github-build-url]
 ![npm-typescript]
 [![License][github-license]][github-license-url]
 
@@ -28,7 +27,7 @@ Add `Calendar` to your component:
 ```js
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { Calendar } from 'reactjs-availability-calendar'
+import Calendar from 'reactjs-availability-calendar'
 
 const bookings = [
   {
@@ -54,23 +53,62 @@ root.render(
 
 ```
 
-Include default stylesheet in your html
+## Default CSS
 
-Note: Please host the CSS in this file yourself
+Please copy and self host the default CSS linked below.
 
-<a href="https://github.com/simpletut/reactjs-availability-calendar/blob/main/styles/main.min.css">Link to CSS</a>
+<a href="https://github.com/simpletut/reactjs-availability-calendar/blob/main/styles/main.min.css">Default CSS</a>
 <br />
-<a href="https://github.com/simpletut/reactjs-availability-calendar/blob/main/styles/main.min.css">Link to Minified CSS</a>
+<a href="https://github.com/simpletut/reactjs-availability-calendar/blob/main/styles/main.css">Minified Default CSS</a>
 
 ```
-<link rel="stylesheet" href="path/to/hosted/styles.css">
+<link href="path/to/your/styles.css" rel="stylesheet">
 
 ```
+
+## Settings / Configurations:
+
+### bookings
+
+**Example:**
+```
+{
+  from: '01-08-2022',
+  to: '01-16-2022',
+  middayCheckout: true,
+}
+```
+**Type:** Array of Bookings\
+**Default:** []\
+**Description:** Dates should be in US format (MM-DD-YYYY).
+
+
+### showNumberOfMonths
+
+**Type:** Number\
+**Default:** 12\
+**Description:** Number of Months to show
+
+### showCurrentYear
+
+**Type:** Bool\
+**Default:** true\
+**Description:** Render active Calendar Year
+
+### showControls
+
+**Type:** Bool\
+**Default:** true\
+**Description:** Render navigation buttons to move forward and previous Calendar Years
+
+### showKey
+
+**Type:** Bool\
+**Default:** true\
+**Description:** Render Key for the different Calendar States
 
 [npm-url]: https://www.npmjs.com/package/reactjs-availability-calendar
 [npm-image]: https://img.shields.io/npm/v/reactjs-availability-calendar
-[github-license]: https://img.shields.io/github/license/simpletut/reactjs-availability-calendar/blob/main/LICENSE
+[github-license]: https://img.shields.io/github/license/simpletut/reactjs-availability-calendar
 [github-license-url]: https://github.com/simpletut/reactjs-availability-calendar/blob/main/LICENSE
-[github-build]: https://github.com/main/reactjs-availability-calendar/actions/workflows/publish.yml/badge.svg
-[github-build-url]: https://github.com/simpletut/reactjs-availability-calendar/actions/workflows/publish.yml
 [npm-typescript]: https://img.shields.io/npm/types/reactjs-availability-calendar

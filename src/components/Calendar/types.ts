@@ -10,7 +10,7 @@ export type ShowMonths = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 
 export interface ICalendarPropTypes {
   bookings?: BookingType[]
-  calMonths?: ShowMonths
+  showNumberOfMonths?: ShowMonths
   showKey?: boolean
   showCurrentYear?: boolean
   showControls?: boolean
@@ -70,7 +70,7 @@ export enum DayOffset {
 export type DaysOfWeekOffsetType = DayOffset[]
 
 export interface IYear {
-  calMonths?: ShowMonths
+  showNumberOfMonths?: ShowMonths
   bookedDates: blockedDaysType
   lateCheckouts: blockedDaysType
   currentYear: number

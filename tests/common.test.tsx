@@ -3,7 +3,7 @@ import { render } from '@testing-library/react'
 
 import 'jest-canvas-mock'
 
-import { Calendar } from '../src'
+import Calendar from '../src'
 
 const bookings = [
   {
@@ -93,7 +93,7 @@ describe('Calendar', () => {
   })
 
   it('Should Render 6 Months', () => {
-    const { getAllByTestId } = render(<Calendar calMonths={6} bookings={bookings} />)
+    const { getAllByTestId } = render(<Calendar showNumberOfMonths={6} bookings={bookings} />)
     const months = getAllByTestId('month')
 
     expect(months).toHaveLength(6)

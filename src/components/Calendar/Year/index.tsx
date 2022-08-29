@@ -6,10 +6,15 @@ import { daysOfTheWeek, daysOfTheWeekOffset } from './../Utils'
 
 dayjs.extend(isBetween)
 
-const Year: FC<IYear> = ({ calMonths, bookedDates, lateCheckouts, currentYear = dayjs().year() }): JSX.Element => {
+const Year: FC<IYear> = ({
+  showNumberOfMonths,
+  bookedDates,
+  lateCheckouts,
+  currentYear = dayjs().year(),
+}): JSX.Element => {
   return (
     <div className='year' data-testid='year'>
-      {new Array(calMonths).fill('').map((_, pos) => {
+      {new Array(showNumberOfMonths).fill('').map((_, pos) => {
         const arrOffset = 1
         const month = pos + arrOffset
         const date = `${currentYear}-${month}`
@@ -68,7 +73,7 @@ const Year: FC<IYear> = ({ calMonths, bookedDates, lateCheckouts, currentYear = 
 }
 
 Year.defaultProps = {
-  calMonths: 12,
+  showNumberOfMonths: 12,
   bookedDates: [],
   lateCheckouts: [],
 }
