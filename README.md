@@ -6,7 +6,7 @@
 
 [**Live Demo**](https://simpletut.github.io/reactjs-availability-calendar/)
 
-Lightweight Availability Calendar Built with React & TypeScript
+Lightweight Availability/Bookings Calendar Built with React & TypeScript
 
 ![ReactJS-Availability-Calendar](https://user-images.githubusercontent.com/20645523/187097982-7cfa4790-308c-4fdb-8965-a7705269fd6e.png)
 
