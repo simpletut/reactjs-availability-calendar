@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { Calendar } from 'reactjs-availability-calendar'
+import Calendar from 'reactjs-availability-calendar'
 
 const bookings = [
   {
