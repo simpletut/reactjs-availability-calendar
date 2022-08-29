@@ -1,6 +1,6 @@
 export type BookingType = {
-  from: string
-  to: string
+  from: string | Date
+  to: string | Date
   middayCheckout?: boolean
 }
 
@@ -35,8 +35,8 @@ export interface IGetAllHalfDays {
 }
 
 export interface IGetDatesInRange {
-  startDate: string
-  endDate: string
+  startDate: string | Date
+  endDate: string | Date
 }
 
 export interface IControls {

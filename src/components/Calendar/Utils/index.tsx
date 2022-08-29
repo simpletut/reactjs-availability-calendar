@@ -29,8 +29,8 @@ export const formatBookingsData = ({ bookings, year }: IFormatBookingsData): Boo
     if (!validStartDate && !validEndDate) return null
 
     const nxtBooking: BookingType = {
-      from,
-      to,
+      from: dayjs(from).format('MM-DD-YYYY'),
+      to: dayjs(to).format('MM-DD-YYYY'),
       middayCheckout,
     }
 
@@ -77,7 +77,7 @@ export const getAllHalfDays = ({ dates }: IGetAllHalfDays): blockedDaysType => {
   const arr: blockedDaysType = []
 
   dates.forEach(({ to, middayCheckout }) => {
-    if (middayCheckout) {
+    if (middayCheckout && typeof to === 'string') {
       arr.push(to)
     }
   })

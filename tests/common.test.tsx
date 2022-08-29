@@ -7,8 +7,8 @@ import Calendar from '../src'
 
 const bookings = [
   {
-    from: '01-08-2022',
-    to: '01-16-2022',
+    from: new Date('01-16-2022'),
+    to: new Date('01-27-2022'),
     middayCheckout: true,
   },
   {
@@ -99,9 +99,9 @@ describe('Calendar', () => {
     expect(months).toHaveLength(6)
   })
 
-  it('Should Render 18 Booked Days', () => {
+  it('Should Render 21 Booked Days', () => {
     const { container } = render(<Calendar bookings={bookings} />)
-    expect(container.getElementsByClassName('booked').length).toBe(18)
+    expect(container.getElementsByClassName('booked').length).toBe(21)
   })
 
   it('Should Render 1 Late Checkout Day', () => {
