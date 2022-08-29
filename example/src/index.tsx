@@ -4,8 +4,8 @@ import Calendar from 'reactjs-availability-calendar'
 
 const bookings = [
   {
-    from: '01-08-2022',
-    to: '01-16-2022',
+    from: new Date('01-16-2022'),
+    to: new Date('01-27-2022'),
     middayCheckout: true,
   },
   {

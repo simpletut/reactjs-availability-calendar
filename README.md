@@ -35,8 +35,8 @@ import Calendar from 'reactjs-availability-calendar'
 export default function App() {
   const bookings = [
     {
-      from: '01-08-2022',
-      to: '01-16-2022',
+      from: new Date('01-16-2022'),
+      to: new Date('01-27-2022'),
       middayCheckout: true,
     },
     {
@@ -74,14 +74,14 @@ Please copy and self host the default CSS linked below.
 **Example:**
 ```
 {
-  from: '01-08-2022',
-  to: '01-16-2022',
+  from: new Date('01-16-2022'),
+  to: new Date('01-27-2022'),
   middayCheckout: true,
 }
 ```
 **Type:** Array of Bookings\
 **Default:** []\
-**Description:** Dates should be in US format (MM-DD-YYYY).
+**Description:** Dates to be shown as unavailable on the calendar
 
 
 ### showNumberOfMonths
