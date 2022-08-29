@@ -6,6 +6,8 @@
 
 [**Live Demo**](https://simpletut.github.io/reactjs-availability-calendar/)
 
+Lightweight Availability Calendar Built with React & TypeScript
+
 ![ReactJS-Availability-Calendar](https://user-images.githubusercontent.com/20645523/187097982-7cfa4790-308c-4fdb-8965-a7705269fd6e.png)
 
 ## Installation:
@@ -57,9 +59,9 @@ root.render(
 
 Please copy and self host the default CSS linked below.
 
-<a href="https://github.com/simpletut/reactjs-availability-calendar/blob/main/styles/main.min.css">Default CSS</a>
+<a href="https://github.com/simpletut/reactjs-availability-calendar/blob/main/styles/main.css">Default CSS</a>
 <br />
-<a href="https://github.com/simpletut/reactjs-availability-calendar/blob/main/styles/main.css">Minified Default CSS</a>
+<a href="https://github.com/simpletut/reactjs-availability-calendar/blob/main/styles/main.min.css">Minified Default CSS</a>
 
 ```
 <link href="path/to/your/styles.css" rel="stylesheet">
