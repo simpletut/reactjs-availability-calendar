@@ -8,6 +8,8 @@
 
 Lightweight Availability/Bookings Calendar Built with React & TypeScript
 
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.paypal.com/donate/?hosted_button_id=5XUQK37UT4Z7Y)
+
 ![ReactJS-Availability-Calendar](https://user-images.githubusercontent.com/20645523/187097982-7cfa4790-308c-4fdb-8965-a7705269fd6e.png)
 
 ## Installation:
