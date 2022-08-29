@@ -11,7 +11,7 @@ dayjs.extend(isBetween)
 
 const Calendar: FC<ICalendarPropTypes> = ({
   bookings,
-  calMonths,
+  showNumberOfMonths,
   showKey,
   showCurrentYear,
   showControls,
@@ -50,7 +50,7 @@ const Calendar: FC<ICalendarPropTypes> = ({
   }, [bookings, currentYear])
 
   const configYear: IYear = {
-    calMonths,
+    showNumberOfMonths,
     bookedDates,
     lateCheckouts,
     currentYear,
@@ -87,7 +87,7 @@ const Calendar: FC<ICalendarPropTypes> = ({
 
 Calendar.defaultProps = {
   bookings: [],
-  calMonths: 12,
+  showNumberOfMonths: 12,
   showKey: true,
   showCurrentYear: true,
   showControls: true,
