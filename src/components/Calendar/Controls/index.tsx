@@ -1,18 +1,18 @@
-import React, { FC } from 'react'
+import React from 'react'
 import { IControls } from './../types'
 
-const Controls: FC<IControls> = ({ prevYear, initCal, nextYear }): JSX.Element => {
+const Controls = ({ prev, initCal, next }: IControls): JSX.Element => {
   return (
     <div className='controls' data-testid='controls'>
-      <button className='btn back' onClick={() => prevYear()} data-testid='back'>
+      <button className='btn back' onClick={() => prev()} data-testid='back'>
         Back
       </button>
 
       <button className='btn now' onClick={() => initCal()} data-testid='now'>
-        Current Year
+        Reset
       </button>
 
-      <button className='btn next' onClick={() => nextYear()} data-testid='next'>
+      <button className='btn next' onClick={() => next()} data-testid='next'>
         Next
       </button>
     </div>
