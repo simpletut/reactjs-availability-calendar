@@ -7,18 +7,20 @@ import { daysOfTheWeek, daysOfTheWeekOffset } from './../Utils'
 dayjs.extend(isBetween)
 
 const Year = ({
-  currentYear = dayjs().year(),
+  activeYear,
   showNumberOfMonths = 12,
   bookedDates = [],
   lateCheckouts = [],
   monthsFrom = 1
 }: IYear): JSX.Element => {
+  const _year = activeYear || dayjs().year()
+
   return (
     <div className='year' data-testid='year'>
       {new Array(showNumberOfMonths).fill('').map((_, pos) => {
         const arrOffset = 1
         const month = monthsFrom + pos
-        const date = `${currentYear}-${month}`
+        const date = `${_year}-${month}`
         const monthName = dayjs(date).format('MMMM')
         const totalDays = dayjs(date).daysInMonth()
 
@@ -51,9 +53,10 @@ const Year = ({
 
               {daysArr.map((_, pos) => {
                 const day = pos + arrOffset
+                const _date = dayjs(`${date}-${day}`).format('MM-DD-YYYY')
                 const isBooked = Array.isArray(bookedDates) ? bookedDates.includes(`${date}-${day}`) : false
                 const isLateCheckout = Array.isArray(lateCheckouts)
-                  ? lateCheckouts.includes(`${dayjs(`${date}-${day}`).format('MM-DD-YYYY')}`)
+                  ? lateCheckouts.includes(_date)
                   : false
 
                 return (

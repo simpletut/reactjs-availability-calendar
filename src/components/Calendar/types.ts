@@ -73,6 +73,6 @@ export interface IYear {
   showNumberOfMonths?: ShowMonths
   bookedDates: blockedDaysType
   lateCheckouts: blockedDaysType
-  currentYear: number
+  activeYear: number
   monthsFrom: number
 }

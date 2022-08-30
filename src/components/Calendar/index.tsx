@@ -19,7 +19,8 @@ const Calendar = ({
   const initialMonth = 1;
   const initialPage = 1;
   const totalCalendarMonths = 12;
-  const [currentYear, setCurrentYear] = useState(dayjs().year())
+  const _year = dayjs().year();
+  const [activeYear, setActiveYear] = useState(_year)
   const [bookedDates, setBookedDates] = useState<blockedDaysType>([])
   const [lateCheckouts, setLateCheckouts] = useState<blockedDaysType>([])
   const [monthsFrom, setMonthsFrom] = useState(initialMonth)
@@ -34,15 +35,15 @@ const Calendar = ({
 
   const initCal = useCallback(() => {
     const _currYear = dayjs().year()
-    setCurrentYear(_currYear)
+    setActiveYear(_currYear)
   }, [])
 
   const prev = useCallback(() => {
     const isFirstPage = page === 1;
 
     if (isFirstPage) {
-      const _previousYear = dayjs(`${currentYear}`).subtract(1, 'year').year()
-      setCurrentYear(_previousYear)
+      const _previousYear = dayjs(`${activeYear}`).subtract(1, 'year').year()
+      setActiveYear(_previousYear)
 
       if (showNumberOfMonths === totalCalendarMonths) {
         resetCalendarYear()
@@ -62,13 +63,13 @@ const Calendar = ({
     setMonthsFrom(nxtStartingMonth)
     setPage(nxtPage)
 
-  }, [page, showNumberOfMonths, currentYear])
+  }, [page, showNumberOfMonths, activeYear])
 
   const next = useCallback(() => {
     const isLastPage = page === totalPages;
     if (isLastPage) {
-      const _nextYear = dayjs(`${currentYear}`).add(1, 'year').year()
-      setCurrentYear(_nextYear)
+      const _nextYear = dayjs(`${activeYear}`).add(1, 'year').year()
+      setActiveYear(_nextYear)
       resetCalendarYear()
       return;
     }
@@ -78,7 +79,7 @@ const Calendar = ({
     setMonthsFrom(nxtStartingMonth)
     setPage(nxtPage)
 
-  }, [page, totalPages, showNumberOfMonths, currentYear])
+  }, [page, totalPages, showNumberOfMonths, activeYear])
 
   const configControls: IControls = {
     prev,
@@ -88,17 +89,17 @@ const Calendar = ({
 
   useEffect(() => {
     if (!Array.isArray(bookings) || bookings.length < 1) return
-    const { halfDays, bookedDays } = handleBookings({ bookings, year: currentYear })
+    const { halfDays, bookedDays } = handleBookings({ bookings, year: activeYear })
 
     setBookedDates(bookedDays)
     setLateCheckouts(halfDays)
-  }, [bookings, currentYear])
+  }, [bookings, activeYear])
 
   const configYear: IYear = {
     showNumberOfMonths,
     bookedDates,
     lateCheckouts,
-    currentYear,
+    activeYear,
     monthsFrom
   }
 
@@ -118,7 +119,7 @@ const Calendar = ({
           <div className='controlWrap'>
             {shouldRender.currentYear && (
               <h1 className='currentYear' data-testid='currentYear'>
-                {currentYear}
+                {activeYear}
               </h1>
             )}
 
