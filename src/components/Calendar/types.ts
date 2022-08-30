@@ -6,7 +6,7 @@ export type BookingType = {
 
 export type blockedDaysType = string[]
 
-export type ShowMonths = 12 | 4 | 2
+export type ShowMonths = 12 | 4 | 2 | 1
 
 export interface ICalendarPropTypes {
   bookings?: BookingType[]

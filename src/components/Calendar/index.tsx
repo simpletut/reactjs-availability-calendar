@@ -108,8 +108,11 @@ const Calendar = ({
     controls: showControls,
   }
 
+  const layoutClassName = showNumberOfMonths !== totalCalendarMonths ?
+    showNumberOfMonths > 1 ? 'twoCol' : 'singleCol' : ''
+
   return (
-    <section className='calendar' data-testid='calendar'>
+    <section className={`calendar ${layoutClassName}`} data-testid='calendar'>
       <div className='wrap'>
         {!shouldRender.controls && !shouldRender.currentYear ? null : (
           <div className='controlWrap'>
