@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import dayjs from 'dayjs'
 import isBetween from 'dayjs/plugin/isBetween'
-import { handleBookings } from './Utils'
+import { handleBookings, isValidMonthsOption } from './Utils'
 import Controls from './Controls'
 import Year from './Year'
 import Key from './Key'
@@ -19,6 +19,7 @@ const Calendar = ({
   const initialMonth = 1
   const initialPage = 1
   const totalCalendarMonths = 12
+  const _showNumberOfMonths = isValidMonthsOption(showNumberOfMonths) ? showNumberOfMonths : totalCalendarMonths
   const _year = dayjs().year()
   const [activeYear, setActiveYear] = useState(_year)
   const [bookedDates, setBookedDates] = useState<blockedDaysType>([])
@@ -26,7 +27,7 @@ const Calendar = ({
   const [monthsFrom, setMonthsFrom] = useState(initialMonth)
   const [page, setPage] = useState(initialPage)
 
-  const totalPages = totalCalendarMonths / showNumberOfMonths
+  const totalPages = totalCalendarMonths / _showNumberOfMonths
 
   const resetCalendarYear = () => {
     setMonthsFrom(initialMonth)
@@ -35,11 +36,11 @@ const Calendar = ({
 
   const goToPage = useCallback(
     (_page: number): void => {
-      const _monthsFrom = _page * showNumberOfMonths - showNumberOfMonths + 1
+      const _monthsFrom = _page * _showNumberOfMonths - _showNumberOfMonths + 1
       setMonthsFrom(_monthsFrom)
       setPage(_page)
     },
-    [showNumberOfMonths],
+    [_showNumberOfMonths],
   )
 
   const findActivePage = useCallback(() => {
@@ -47,27 +48,27 @@ const Calendar = ({
     const _month = now.month() + 1
     let _page = 1
     for (let i = 1; i <= totalPages; i++) {
-      const found = _month <= i * showNumberOfMonths
+      const found = _month <= i * _showNumberOfMonths
       _page = i
       if (found) break
     }
 
     goToPage(_page)
-  }, [goToPage, showNumberOfMonths, totalPages])
+  }, [goToPage, _showNumberOfMonths, totalPages])
 
   useEffect(() => {
-    if (showNumberOfMonths !== totalCalendarMonths) {
+    if (_showNumberOfMonths !== totalCalendarMonths) {
       findActivePage()
     }
-  }, [findActivePage, showNumberOfMonths])
+  }, [findActivePage, _showNumberOfMonths])
 
   const initCal = useCallback(() => {
     const now = dayjs()
     const _year = now.year()
     setActiveYear(_year)
-    if (showNumberOfMonths !== totalCalendarMonths) findActivePage()
+    if (_showNumberOfMonths !== totalCalendarMonths) findActivePage()
     else resetCalendarYear()
-  }, [findActivePage, showNumberOfMonths])
+  }, [findActivePage, _showNumberOfMonths])
 
   const prev = useCallback(() => {
     const isFirstPage = page === 1
@@ -76,12 +77,12 @@ const Calendar = ({
       const _previousYear = dayjs(`${activeYear}`).subtract(1, 'year').year()
       setActiveYear(_previousYear)
 
-      if (showNumberOfMonths === totalCalendarMonths) {
+      if (_showNumberOfMonths === totalCalendarMonths) {
         resetCalendarYear()
         return
       }
 
-      const nxtStartingMonth = totalCalendarMonths - showNumberOfMonths + 1
+      const nxtStartingMonth = totalCalendarMonths - _showNumberOfMonths + 1
       const nxtPage = totalPages
 
       setMonthsFrom(nxtStartingMonth)
@@ -89,11 +90,11 @@ const Calendar = ({
       return
     }
 
-    const nxtStartingMonth = monthsFrom - showNumberOfMonths
+    const nxtStartingMonth = monthsFrom - _showNumberOfMonths
     const nxtPage = page - 1
     setMonthsFrom(nxtStartingMonth)
     setPage(nxtPage)
-  }, [page, showNumberOfMonths, monthsFrom, totalPages, activeYear])
+  }, [page, _showNumberOfMonths, monthsFrom, totalPages, activeYear])
 
   const next = useCallback(() => {
     const isLastPage = page === totalPages
@@ -104,11 +105,11 @@ const Calendar = ({
       return
     }
 
-    const nxtStartingMonth = page * showNumberOfMonths + 1
+    const nxtStartingMonth = page * _showNumberOfMonths + 1
     const nxtPage = page + 1
     setMonthsFrom(nxtStartingMonth)
     setPage(nxtPage)
-  }, [page, totalPages, showNumberOfMonths, activeYear])
+  }, [page, totalPages, _showNumberOfMonths, activeYear])
 
   const configControls: IControls = {
     prev,
@@ -125,7 +126,7 @@ const Calendar = ({
   }, [bookings, activeYear])
 
   const configYear: IYear = {
-    showNumberOfMonths,
+    showNumberOfMonths: _showNumberOfMonths,
     bookedDates,
     lateCheckouts,
     activeYear,
@@ -139,7 +140,7 @@ const Calendar = ({
   }
 
   const layoutClassName =
-    showNumberOfMonths !== totalCalendarMonths ? (showNumberOfMonths > 1 ? 'twoCol' : 'singleCol') : ''
+    _showNumberOfMonths !== totalCalendarMonths ? (_showNumberOfMonths > 1 ? 'twoCol' : 'singleCol') : ''
 
   return (
     <section className={`calendar ${layoutClassName}`} data-testid='calendar'>
