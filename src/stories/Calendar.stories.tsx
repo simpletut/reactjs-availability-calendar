@@ -1,17 +1,17 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import Calendar from './../components/Calendar';
+import React from 'react'
+import { ComponentStory, ComponentMeta } from '@storybook/react'
+import Calendar from './../components/Calendar'
 
 export default {
   title: 'Calendar',
   component: Calendar,
-} as ComponentMeta<typeof Calendar>;
+} as ComponentMeta<typeof Calendar>
 
-const Template: ComponentStory<typeof Calendar> = (args) => <Calendar {...args} />;
+const Template: ComponentStory<typeof Calendar> = (args) => <Calendar {...args} />
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 
-export const WithBookings = Template.bind({});
+export const WithBookings = Template.bind({})
 WithBookings.args = {
   bookings: [
     {
@@ -24,5 +24,5 @@ WithBookings.args = {
       to: '07-03-2022',
       middayCheckout: false,
     },
-  ]
-};
+  ],
+}
