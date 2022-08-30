@@ -177,7 +177,8 @@
 }
 
 @media (max-width: 768px) {
-  .month {
+  .month,
+  .twoCol .month {
     width: 100%;
   }
 }

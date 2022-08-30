@@ -14,7 +14,6 @@
 }
 
 .currentYear {
-  font-family: arial;
   font-size: 32px;
   line-height: 1;
   font-weight: 400;
@@ -80,7 +79,6 @@
 }
 
 .monthName {
-  font-family: arial;
   font-size: 24px;
   line-height: 1;
   font-weight: 400;
@@ -184,7 +182,8 @@
 }
 
 @media (max-width: 768px) {
-  .month {
+  .month,
+  .twoCol .month {
     width: 100%;
   }
 }
