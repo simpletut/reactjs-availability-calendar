@@ -36,6 +36,15 @@ export const daysOfTheWeekOffset: DaysOfWeekOffsetType = [
   DayOffset.Sunday,
 ]
 
+export const isValidMonthsOption = (numOfMonths: number): boolean => {
+  if (!numOfMonths || typeof numOfMonths !== 'number') return false
+
+  const validOptions = [12, 4, 2, 1]
+  const isValid = validOptions.includes(numOfMonths)
+
+  return isValid
+}
+
 export const getMonthName = (month: number): string => {
   const months: IGetMonthName = {
     1: 'January',
