@@ -9,35 +9,80 @@ import { ICalendarPropTypes, IControls, blockedDaysType, IYear } from './types'
 
 dayjs.extend(isBetween)
 
-const Calendar: FC<ICalendarPropTypes> = ({
-  bookings,
-  showNumberOfMonths,
-  showKey,
-  showCurrentYear,
-  showControls,
-}): JSX.Element => {
+const Calendar = ({
+  bookings = [],
+  showNumberOfMonths = 12,
+  showKey = true,
+  showCurrentYear = true,
+  showControls = true,
+}: ICalendarPropTypes): JSX.Element => {
+  const initialMonth = 1;
+  const initialPage = 1;
+  const totalCalendarMonths = 12;
   const [currentYear, setCurrentYear] = useState(dayjs().year())
   const [bookedDates, setBookedDates] = useState<blockedDaysType>([])
   const [lateCheckouts, setLateCheckouts] = useState<blockedDaysType>([])
+  const [monthsFrom, setMonthsFrom] = useState(initialMonth)
+  const [page, setPage] = useState(initialPage)
+
+  const totalPages = totalCalendarMonths / showNumberOfMonths;
+
+  const resetCalendarYear = () => {
+    setMonthsFrom(initialMonth)
+    setPage(initialPage)
+  };
 
   const initCal = useCallback(() => {
     const _currYear = dayjs().year()
     setCurrentYear(_currYear)
   }, [])
 
-  const prevYear = useCallback(() => {
-    const _previousYear = dayjs(`${currentYear}`).subtract(1, 'year')
-    setCurrentYear(_previousYear.year())
-  }, [currentYear])
+  const prev = useCallback(() => {
+    const isFirstPage = page === 1;
 
-  const nextYear = useCallback(() => {
-    const _nextYear = dayjs(`${currentYear}`).add(1, 'year')
-    setCurrentYear(_nextYear.year())
-  }, [currentYear])
+    if (isFirstPage) {
+      const _previousYear = dayjs(`${currentYear}`).subtract(1, 'year').year()
+      setCurrentYear(_previousYear)
+
+      if (showNumberOfMonths === totalCalendarMonths) {
+        resetCalendarYear()
+        return;
+      }
+
+      const nxtStartingMonth = totalCalendarMonths - showNumberOfMonths + 1;
+      const nxtPage = totalPages;
+
+      setMonthsFrom(nxtStartingMonth)
+      setPage(nxtPage)
+      return;
+    }
+
+    const nxtStartingMonth = monthsFrom - showNumberOfMonths;
+    const nxtPage = page - 1;
+    setMonthsFrom(nxtStartingMonth)
+    setPage(nxtPage)
+
+  }, [page, showNumberOfMonths, currentYear])
+
+  const next = useCallback(() => {
+    const isLastPage = page === totalPages;
+    if (isLastPage) {
+      const _nextYear = dayjs(`${currentYear}`).add(1, 'year').year()
+      setCurrentYear(_nextYear)
+      resetCalendarYear()
+      return;
+    }
+
+    const nxtStartingMonth = page * showNumberOfMonths + 1;
+    const nxtPage = page + 1;
+    setMonthsFrom(nxtStartingMonth)
+    setPage(nxtPage)
+
+  }, [page, totalPages, showNumberOfMonths, currentYear])
 
   const configControls: IControls = {
-    prevYear,
-    nextYear,
+    prev,
+    next,
     initCal,
   }
 
@@ -54,6 +99,7 @@ const Calendar: FC<ICalendarPropTypes> = ({
     bookedDates,
     lateCheckouts,
     currentYear,
+    monthsFrom
   }
 
   const shouldRender = {
@@ -83,14 +129,6 @@ const Calendar: FC<ICalendarPropTypes> = ({
       </div>
     </section>
   )
-}
-
-Calendar.defaultProps = {
-  bookings: [],
-  showNumberOfMonths: 12,
-  showKey: true,
-  showCurrentYear: true,
-  showControls: true,
 }
 
 export default Calendar

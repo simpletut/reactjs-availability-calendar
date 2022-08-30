@@ -6,7 +6,7 @@ export type BookingType = {
 
 export type blockedDaysType = string[]
 
-export type ShowMonths = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+export type ShowMonths = 12 | 4 | 2
 
 export interface ICalendarPropTypes {
   bookings?: BookingType[]
@@ -40,9 +40,9 @@ export interface IGetDatesInRange {
 }
 
 export interface IControls {
-  prevYear: () => void
+  prev: () => void
   initCal: () => void
-  nextYear: () => void
+  next: () => void
 }
 
 export enum Days {
@@ -74,4 +74,5 @@ export interface IYear {
   bookedDates: blockedDaysType
   lateCheckouts: blockedDaysType
   currentYear: number
+  monthsFrom: number
 }
