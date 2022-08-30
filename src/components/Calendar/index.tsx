@@ -33,11 +33,41 @@ const Calendar = ({
     setPage(initialPage)
   }
 
+  const goToPage = useCallback(
+    (_page: number): void => {
+      const _monthsFrom = _page * showNumberOfMonths - showNumberOfMonths + 1
+      setMonthsFrom(_monthsFrom)
+      setPage(_page)
+    },
+    [showNumberOfMonths],
+  )
+
+  const findActivePage = useCallback(() => {
+    const now = dayjs()
+    const _month = now.month() + 1
+    let _page = 1
+    for (let i = 1; i <= totalPages; i++) {
+      const found = _month <= i * showNumberOfMonths
+      _page = i
+      if (found) break
+    }
+
+    goToPage(_page)
+  }, [goToPage, showNumberOfMonths, totalPages])
+
+  useEffect(() => {
+    if (showNumberOfMonths !== totalCalendarMonths) {
+      findActivePage()
+    }
+  }, [findActivePage, showNumberOfMonths])
+
   const initCal = useCallback(() => {
-    const now = dayjs();
+    const now = dayjs()
     const _year = now.year()
     setActiveYear(_year)
-  }, [])
+    if (showNumberOfMonths !== totalCalendarMonths) findActivePage()
+    else resetCalendarYear()
+  }, [findActivePage, showNumberOfMonths])
 
   const prev = useCallback(() => {
     const isFirstPage = page === 1

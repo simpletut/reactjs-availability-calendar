@@ -88,6 +88,7 @@ Please copy and self host the default CSS linked below.
 
 **Type:** Number\
 **Default:** 12\
+**Options** 12 | 4 | 2 | 1
 **Description:** Number of Months to show
 
 ### showCurrentYear
