@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React from 'react'
 import { IControls } from './../types'
 
 const Controls = ({ prev, initCal, next }: IControls): JSX.Element => {

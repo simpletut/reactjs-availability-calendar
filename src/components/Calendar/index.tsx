@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import dayjs from 'dayjs'
 import isBetween from 'dayjs/plugin/isBetween'
 import { handleBookings } from './Utils'
@@ -16,30 +16,31 @@ const Calendar = ({
   showCurrentYear = true,
   showControls = true,
 }: ICalendarPropTypes): JSX.Element => {
-  const initialMonth = 1;
-  const initialPage = 1;
-  const totalCalendarMonths = 12;
-  const _year = dayjs().year();
+  const initialMonth = 1
+  const initialPage = 1
+  const totalCalendarMonths = 12
+  const _year = dayjs().year()
   const [activeYear, setActiveYear] = useState(_year)
   const [bookedDates, setBookedDates] = useState<blockedDaysType>([])
   const [lateCheckouts, setLateCheckouts] = useState<blockedDaysType>([])
   const [monthsFrom, setMonthsFrom] = useState(initialMonth)
   const [page, setPage] = useState(initialPage)
 
-  const totalPages = totalCalendarMonths / showNumberOfMonths;
+  const totalPages = totalCalendarMonths / showNumberOfMonths
 
   const resetCalendarYear = () => {
     setMonthsFrom(initialMonth)
     setPage(initialPage)
-  };
+  }
 
   const initCal = useCallback(() => {
-    const _currYear = dayjs().year()
-    setActiveYear(_currYear)
+    const now = dayjs();
+    const _year = now.year()
+    setActiveYear(_year)
   }, [])
 
   const prev = useCallback(() => {
-    const isFirstPage = page === 1;
+    const isFirstPage = page === 1
 
     if (isFirstPage) {
       const _previousYear = dayjs(`${activeYear}`).subtract(1, 'year').year()
@@ -47,38 +48,36 @@ const Calendar = ({
 
       if (showNumberOfMonths === totalCalendarMonths) {
         resetCalendarYear()
-        return;
+        return
       }
 
-      const nxtStartingMonth = totalCalendarMonths - showNumberOfMonths + 1;
-      const nxtPage = totalPages;
+      const nxtStartingMonth = totalCalendarMonths - showNumberOfMonths + 1
+      const nxtPage = totalPages
 
       setMonthsFrom(nxtStartingMonth)
       setPage(nxtPage)
-      return;
+      return
     }
 
-    const nxtStartingMonth = monthsFrom - showNumberOfMonths;
-    const nxtPage = page - 1;
+    const nxtStartingMonth = monthsFrom - showNumberOfMonths
+    const nxtPage = page - 1
     setMonthsFrom(nxtStartingMonth)
     setPage(nxtPage)
-
-  }, [page, showNumberOfMonths, activeYear])
+  }, [page, showNumberOfMonths, monthsFrom, totalPages, activeYear])
 
   const next = useCallback(() => {
-    const isLastPage = page === totalPages;
+    const isLastPage = page === totalPages
     if (isLastPage) {
       const _nextYear = dayjs(`${activeYear}`).add(1, 'year').year()
       setActiveYear(_nextYear)
       resetCalendarYear()
-      return;
+      return
     }
 
-    const nxtStartingMonth = page * showNumberOfMonths + 1;
-    const nxtPage = page + 1;
+    const nxtStartingMonth = page * showNumberOfMonths + 1
+    const nxtPage = page + 1
     setMonthsFrom(nxtStartingMonth)
     setPage(nxtPage)
-
   }, [page, totalPages, showNumberOfMonths, activeYear])
 
   const configControls: IControls = {
@@ -100,7 +99,7 @@ const Calendar = ({
     bookedDates,
     lateCheckouts,
     activeYear,
-    monthsFrom
+    monthsFrom,
   }
 
   const shouldRender = {
@@ -109,8 +108,8 @@ const Calendar = ({
     controls: showControls,
   }
 
-  const layoutClassName = showNumberOfMonths !== totalCalendarMonths ?
-    showNumberOfMonths > 1 ? 'twoCol' : 'singleCol' : ''
+  const layoutClassName =
+    showNumberOfMonths !== totalCalendarMonths ? (showNumberOfMonths > 1 ? 'twoCol' : 'singleCol') : ''
 
   return (
     <section className={`calendar ${layoutClassName}`} data-testid='calendar'>

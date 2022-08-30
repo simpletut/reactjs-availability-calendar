@@ -92,11 +92,11 @@ describe('Calendar', () => {
     expect(months).toHaveLength(12)
   })
 
-  it('Should Render 6 Months', () => {
-    const { getAllByTestId } = render(<Calendar showNumberOfMonths={6} bookings={bookings} />)
+  it('Should Render 4 Months', () => {
+    const { getAllByTestId } = render(<Calendar showNumberOfMonths={4} bookings={bookings} />)
     const months = getAllByTestId('month')
 
-    expect(months).toHaveLength(6)
+    expect(months).toHaveLength(4)
   })
 
   it('Should Render 21 Booked Days', () => {

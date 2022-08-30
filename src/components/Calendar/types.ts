@@ -76,3 +76,7 @@ export interface IYear {
   activeYear: number
   monthsFrom: number
 }
+
+export interface IGetMonthName {
+  [key: number]: string
+}
