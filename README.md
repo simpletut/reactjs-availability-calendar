@@ -71,16 +71,16 @@ Please copy and self host the default CSS linked below.
 
 ### bookings
 
+**Type:** Array of Bookings\
+**Default:** []\
 **Example:**
 ```
-{
+[{
   from: new Date('01-16-2022'),
   to: new Date('01-27-2022'),
   middayCheckout: true,
-}
+}]
 ```
-**Type:** Array of Bookings\
-**Default:** []\
 **Description:** Dates to be shown as unavailable on the calendar
 
 
