@@ -1,6 +1,6 @@
 {
   "name": "reactjs-availability-calendar",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "React Availability Calendar",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
