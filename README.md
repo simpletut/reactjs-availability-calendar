@@ -4,7 +4,7 @@
 ![npm-typescript]
 [![License][github-license]][github-license-url]
 
-[**Live Demo**](https://simpletut.github.io/reactjs-availability-calendar/)
+[**Live Demo**](https://reactjs-availability-calendar-demo-simpletut.vercel.app/)
 
 Lightweight Availability/Bookings Calendar Built with React & TypeScript
 
