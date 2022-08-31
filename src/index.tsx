@@ -18,6 +18,26 @@ const bookings = [
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
+    <header className='header'>
+      <div className='info'>
+        <a className='backBtn' href='https://www.npmjs.com/package/reactjs-availability-calendar'>
+          <span>Back</span>
+        </a>
+        <a className='packageInfo' href='https://www.npmjs.com/package/reactjs-availability-calendar'>
+          <span>
+            <strong>NPM Package:</strong> reactjs-availability-calendar
+          </span>
+          <span className='sm'>
+            Lightweight Availability/Bookings Calendar Built with React & TypeScript
+          </span>
+        </a>
+      </div>
+      <div className='demoNotice'>
+        <span>
+          This is a Demo
+        </span>
+      </div>
+    </header>
     <div className='demo'>
       <Calendar bookings={bookings} />
     </div>
