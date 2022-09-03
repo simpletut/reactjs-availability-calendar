@@ -12,7 +12,7 @@ const bookings = [
     from: '2022-09-03T19:20:35.593Z',
     to: '2022-09-03T19:20:35.593Z',
     middayCheckout: false,
-  }
+  },
 ]
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
