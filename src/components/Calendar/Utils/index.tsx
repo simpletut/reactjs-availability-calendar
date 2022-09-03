@@ -1,4 +1,7 @@
 import dayjs from 'dayjs'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
+dayjs.extend(customParseFormat)
+
 import {
   BookingType,
   blockedDaysType,
@@ -92,8 +95,8 @@ export const formatBookingsData = ({ bookings, year }: IFormatBookingsData): Boo
 }
 
 export const getDatesInRange = ({ startDate, endDate }: IGetDatesInRange): blockedDaysType => {
-  let _startDate = dayjs(startDate)
-  const _endDate = dayjs(endDate)
+  let _startDate = dayjs(startDate, 'M-D-YYYY')
+  const _endDate = dayjs(endDate, 'M-D-YYYY')
 
   const dates: blockedDaysType = []
 
