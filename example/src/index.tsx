@@ -4,15 +4,15 @@ import Calendar from 'reactjs-availability-calendar'
 
 const bookings = [
   {
-    from: new Date('01-16-2022'),
-    to: new Date('01-27-2022'),
+    from: '2022-04-08T00:00:00.000Z',
+    to: '2022-04-10T00:00:00.000Z',
     middayCheckout: true,
   },
   {
-    from: '06-25-2022',
-    to: '07-03-2022',
+    from: '2022-09-03T19:20:35.593Z',
+    to: '2022-09-03T19:20:35.593Z',
     middayCheckout: false,
-  },
+  }
 ]
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
