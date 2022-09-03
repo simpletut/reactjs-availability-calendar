@@ -35,15 +35,20 @@ import Calendar from 'reactjs-availability-calendar'
 export default function App() {
   const bookings = [
     {
-      from: '2022-04-08T00:00:00.000Z',
-      to: '2022-04-10T00:00:00.000Z',
+      from: new Date('2022-07-03'),
+      to: new Date('2022-07-30'),
+      middayCheckout: true,
+    },
+    {
+      from: '2022-04-08',
+      to: '2022-04-13',
       middayCheckout: true,
     },
     {
       from: '2022-09-03T19:20:35.593Z',
-      to: '2022-09-03T19:20:35.593Z',
+      to: '2022-09-22T19:20:35.593Z',
       middayCheckout: false,
-    }
+    },
   ]
 
   return (
@@ -81,7 +86,7 @@ Please copy and self host the default CSS linked below.
   middayCheckout: true,
 }]
 ```
-**Important:** Dates must be in valid ISO 8601 format. <a href="https://en.wikipedia.org/wiki/ISO_8601">Learn more</a>\
+**Notes:** For best results, `Dates` should be in valid ISO 8601 format. <a href="https://en.wikipedia.org/wiki/ISO_8601">Learn more</a>\
 **Description:** Dates to be shown as unavailable on the calendar
 
 
