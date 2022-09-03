@@ -15,13 +15,18 @@ export const WithBookings = Template.bind({})
 WithBookings.args = {
   bookings: [
     {
-      from: '2022-04-08T00:00:00.000Z',
-      to: '2022-04-10T00:00:00.000Z',
+      from: new Date('2022-07-03'),
+      to: new Date('2022-07-30'),
+      middayCheckout: true,
+    },
+    {
+      from: '2022-04-08',
+      to: '2022-04-13',
       middayCheckout: true,
     },
     {
       from: '2022-09-03T19:20:35.593Z',
-      to: '2022-09-03T19:20:35.593Z',
+      to: '2022-09-22T19:20:35.593Z',
       middayCheckout: false,
     },
   ],
