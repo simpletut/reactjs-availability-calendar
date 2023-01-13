@@ -118,7 +118,6 @@ const Calendar = ({
   }
 
   useEffect(() => {
-    if (!Array.isArray(bookings) || bookings.length < 1) return
     const { halfDays, bookedDays } = handleBookings({ bookings, year: activeYear })
 
     setBookedDates(bookedDays)
