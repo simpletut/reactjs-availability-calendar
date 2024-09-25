@@ -10,7 +10,7 @@ const Year = ({
   lateCheckouts = [],
   monthsFrom = 1,
 }: IYear): JSX.Element => {
-  const _year = activeYear || dayjs.tz().year()
+  const _year = activeYear || dayjs().year()
 
   return (
     <div className='year' data-testid='year'>
@@ -19,8 +19,8 @@ const Year = ({
         const month = monthsFrom + pos
         const date = `${_year}-${month}`
         const monthName = getMonthName(month)
-        const totalDays = dayjs.tz(date).daysInMonth()
-        const firstDayOfWeek = dayjs.tz(`${date}-01`).day()
+        const totalDays = dayjs(date).daysInMonth()
+        const firstDayOfWeek = dayjs(`${date}-01`).day()
 
         const offsetDays =
           firstDayOfWeek !== 0
