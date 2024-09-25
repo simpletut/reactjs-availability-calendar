@@ -6,17 +6,17 @@ import Controls from './Controls'
 import Year from './Year'
 import Key from './Key'
 import { ICalendarPropTypes, IControls, blockedDaysType, IYear } from './types'
-import timezone from "dayjs/plugin/timezone";
-import utc from "dayjs/plugin/utc";
-import advancedFormat from "dayjs/plugin/advancedFormat";
+// import timezone from "dayjs/plugin/timezone";
+// import utc from "dayjs/plugin/utc";
+// import advancedFormat from "dayjs/plugin/advancedFormat";
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 
-const defaultTimeZone = 'Europe/London';
+// const defaultTimeZone = 'Europe/London';
 
-dayjs.extend(utc);
-dayjs.extend(timezone);
-dayjs.extend(advancedFormat);
-dayjs.tz.setDefault(defaultTimeZone);
+// dayjs.extend(utc);
+// dayjs.extend(timezone);
+// dayjs.extend(advancedFormat);
+// dayjs.tz.setDefault(defaultTimeZone);
 dayjs.extend(isBetween);
 dayjs.extend(customParseFormat);
 
@@ -31,7 +31,7 @@ const Calendar = ({
   const initialPage = 1
   const totalCalendarMonths = 12
   const _showNumberOfMonths = isValidMonthsOption(showNumberOfMonths) ? showNumberOfMonths : totalCalendarMonths
-  const _year = dayjs.tz().year();
+  const _year = dayjs().year();
   const [activeYear, setActiveYear] = useState(_year)
   const [bookedDates, setBookedDates] = useState<blockedDaysType>([])
   const [lateCheckouts, setLateCheckouts] = useState<blockedDaysType>([])
@@ -55,7 +55,7 @@ const Calendar = ({
   )
 
   const findActivePage = useCallback(() => {
-    const now = dayjs.tz()
+    const now = dayjs()
     const _month = now.month() + 1
     let _page = 1
     for (let i = 1; i <= totalPages; i++) {
@@ -74,7 +74,7 @@ const Calendar = ({
   }, [findActivePage, _showNumberOfMonths])
 
   const initCal = useCallback(() => {
-    const now = dayjs.tz()
+    const now = dayjs()
     const _year = now.year()
     setActiveYear(_year)
     if (_showNumberOfMonths !== totalCalendarMonths) findActivePage()
@@ -85,7 +85,7 @@ const Calendar = ({
     const isFirstPage = page === 1
 
     if (isFirstPage) {
-      const _previousYear = dayjs.tz(`${activeYear}`).subtract(1, 'year').year()
+      const _previousYear = dayjs(`${activeYear}`).subtract(1, 'year').year()
       setActiveYear(_previousYear)
 
       if (_showNumberOfMonths === totalCalendarMonths) {
@@ -110,7 +110,7 @@ const Calendar = ({
   const next = useCallback(() => {
     const isLastPage = page === totalPages
     if (isLastPage) {
-      const _nextYear = dayjs.tz(`${activeYear}`).add(1, 'year').year()
+      const _nextYear = dayjs(`${activeYear}`).add(1, 'year').year()
       setActiveYear(_nextYear)
       resetCalendarYear()
       return
