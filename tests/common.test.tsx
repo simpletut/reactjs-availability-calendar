@@ -7,13 +7,13 @@ import Calendar from '../src'
 
 const bookings = [
   {
-    from: '2023-01-16T00:00:00.000Z',
-    to: '2023-01-27T00:00:00.000Z',
+    from: '2024-01-16T00:00:00.000Z',
+    to: '2024-01-27T00:00:00.000Z',
     middayCheckout: true,
   },
   {
-    from: '2023-06-25T23:00:00.000Z',
-    to: '2023-07-03T23:00:00.000Z',
+    from: '2024-06-25T23:00:00.000Z',
+    to: '2024-07-03T23:00:00.000Z',
     middayCheckout: false,
   },
 ]

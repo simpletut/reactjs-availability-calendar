@@ -1,6 +1,4 @@
 import dayjs from 'dayjs'
-import customParseFormat from 'dayjs/plugin/customParseFormat'
-dayjs.extend(customParseFormat)
 
 import {
   BookingType,
@@ -77,14 +75,14 @@ export const formatBookingsData = ({ bookings, year }: IFormatBookingsData): Boo
     const to = booking?.to
     const middayCheckout = booking?.middayCheckout
 
-    const validStartDate = dayjs(from).year() === Number(year)
-    const validEndDate = dayjs(to).year() === Number(year)
+    const validStartDate = dayjs.tz(from).year() === Number(year)
+    const validEndDate = dayjs.tz(to).year() === Number(year)
 
     if (!validStartDate && !validEndDate) return null
 
     const nxtBooking: BookingType = {
-      from: dayjs(from).format(dateFormat),
-      to: dayjs(to).format(dateFormat),
+      from: dayjs.tz(from).format(dateFormat),
+      to: dayjs.tz(to).format(dateFormat),
       middayCheckout,
     }
 
@@ -95,13 +93,13 @@ export const formatBookingsData = ({ bookings, year }: IFormatBookingsData): Boo
 }
 
 export const getDatesInRange = ({ startDate, endDate }: IGetDatesInRange): blockedDaysType => {
-  let _startDate = dayjs(startDate, 'M-D-YYYY')
-  const _endDate = dayjs(endDate, 'M-D-YYYY')
+  let _startDate = dayjs.tz(startDate).hour(0).minute(0).second(0);
+  const _endDate = dayjs.tz(endDate).hour(0).minute(0).second(0);
 
   const dates: blockedDaysType = []
 
-  while (!_startDate.isAfter(_endDate)) {
-    dates.push(_startDate.format(dateFormat))
+  while (!dayjs.tz(_startDate).isAfter(_endDate)) {
+    dates.push(_startDate.format(dateFormat));
 
     _startDate = _startDate.add(1, 'day')
   }
